@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plantas Assinatura Interior — Gardénia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --forest: #0F2A1D;
+    --forest-mid: #1a3d2b;
+    --forest-light: #2a5240;
+    --ivory: #F7F5F0;
+    --ivory-dark: #EDE9E1;
+    --gold: #C8A96A;
+    --gold-light: #D9BF8A;
+    --brown: #6B4F3A;
+    --text-dark: #1C1C1A;
+    --text-mid: #4A4A42;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--ivory);
+    color: var(--text-dark);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 60px;
+    transition: background 0.4s, padding 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(15,42,29,0.97);
+    padding: 18px 60px;
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--ivory);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(247,245,240,0.75);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--gold);
+    border: none;
+    padding: 12px 28px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ── HERO SECTION ── */
+  .hero-page {
+    background: var(--forest);
+    padding: 160px 60px 80px;
+    min-height: 500px;
+  }
+  .hero-page-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeUp 1.2s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .hero-page-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .hero-page-eyebrow::before {
+    content: '';
+    display: block; width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-page h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--ivory);
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  .hero-page-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(247,245,240,0.65);
+    line-height: 1.7;
+    max-width: 500px;
+  }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 60px 20px;
+    font-size: 0.85rem;
+    color: var(--text-mid);
+  }
+  .breadcrumb a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  /* ── PRODUCTS GRID ── */
+  .products-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px;
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+  }
+  .product-card {
+    background: var(--ivory-dark);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(15,42,29,0.15);
+  }
+  .product-image {
+    width: 100%;
+    height: 280px;
+    background: linear-gradient(135deg, #2a5240 0%, #0F2A1D 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    opacity: 0.7;
+  }
+  .product-info {
+    padding: 28px;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+  .product-description {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .product-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .product-btn {
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--forest);
+    color: var(--ivory);
+    border: none;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .product-btn:hover { background: var(--forest-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #06100a;
+    padding: 70px 60px 50px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+  }
+  .footer-brand .nav-logo { font-size: 2rem; }
+  .footer-tagline {
+    font-size: 0.85rem;
+    color: rgba(247,245,240,0.35);
+    line-height: 1.75;
+    margin-top: 18px;
+    font-weight: 300;
+  }
+  .footer-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+  .footer-links a {
+    font-size: 0.88rem;
+    color: rgba(247,245,240,0.45);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-bottom {
+    background: #06100a;
+    padding: 20px 60px;
+    border-top: 1px solid rgba(200,169,106,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 0.72rem; color: rgba(247,245,240,0.22); letter-spacing: 0.1em; }
+  .footer-divider { width: 50px; height: 1px; background: rgba(200,169,106,0.3); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 22px 24px; }
+    nav.scrolled { padding: 14px 24px; }
+    .nav-links { display: none; }
+    .hero-page { padding: 120px 24px 60px; }
+    .products-section { padding: 40px 24px; }
+    .products-grid { gap: 24px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    footer { grid-template-columns: 1fr 1fr; padding: 60px 24px 40px; gap: 40px; }
+    .footer-bottom { padding: 18px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Gard<span>é</span>nia</a>
+  <ul class="nav-links">
+    <li><a href="index.html#collections">Colecções</a></li>
+    <li><a href="index.html#about">A Nossa História</a></li>
+    <li><a href="index.html#experience">Serviços</a></li>
+    <li><a href="index.html#contact">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero-page">
+  <div class="hero-page-content">
+    <div class="hero-page-eyebrow">Colecção Destacada</div>
+    <h1>Plantas Assinatura<br>Interior</h1>
+    <p class="hero-page-sub">A nossa colecção mais popular de plantas de interior, seleccionadas especialmente para trazer vida aos seus espaços com elegância e simplicidade.</p>
+  </div>
+</section>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Início</a> / <a href="index.html#collections">Colecções</a> / Plantas Assinatura Interior
+</div>
+
+<!-- PRODUCTS -->
+<section class="products-section">
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-image">🌿</div>
+      <div class="product-info">
+        <div class="product-name">Ficus Lira</div>
+        <p class="product-description">Uma planta de grande impacto com folhas grandes e elegantes. Perfeita para espaços amplos.</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">🌱</div>
+      <div class="product-info">
+        <div class="product-name">Monstera Deliciosa</div>
+        <p class="product-description">Clássica e sofisticada, com folhas perfuradas únicas. Excelente para salas de estar.</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">🍃</div>
+      <div class="product-info">
+        <div class="product-name">Pothos Dourado</div>
+        <p class="product-description">Resistente e bela, perfeita para prateleiras altas ou pendurada. Cresce com elegância.</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">🌿</div>
+      <div class="product-info">
+        <div class="product-name">Calathea Orbifolia</div>
+        <p class="product-description">Folhas decorativas com padrões únicos. Traz personalidade a qualquer espaço moderno.</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">🌱</div>
+      <div class="product-info">
+        <div class="product-name">Sansevieria Trifasciata</div>
+        <p class="product-description">Resistente e de baixa manutenção. Excelente purificador de ar para qualquer ambiente.</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">🍃</div>
+      <div class="product-info">
+        <div class="product-name">Alocásia Amazónica</div>
+        <p class="product-description">Folhas grandes e dramáticas. Para quem deseja fazer uma declaração ousada.</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">🌿</div>
+      <div class="product-info">
+        <div class="product-name">Philodendron Brasil</div>
+        <p class="product-description">Cores vibrantes verde e dourado. Versátil e adaptável a diferentes espaços.</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">🌱</div>
+      <div class="product-info">
+        <div class="product-name">Zamioculcas Zamiifolia</div>
+        <p class="product-description">Elegante e duradoura. Perfeita para escritórios e espaços contemporâneos.</p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="index.html" class="nav-logo">Gard<span style="color:var(--gold)">é</span>nia</a>
+    <p class="footer-tagline">Onde a Natureza Encontra a Elegância.<br>Uma butique de plantas de luxo enraizada na paixão, cuidado e atenção discreta aos detalhes.</p>
+  </div>
+  <div>
+    <div class="footer-title">Colecções</div>
+    <ul class="footer-links">
+      <li><a href="plantas-assinatura-interior.html">Plantas Interior</a></li>
+      <li><a href="pecas-de-impacto.html">Peças de Impacto</a></li>
+      <li><a href="achados-raros.html">Achados Raros</a></li>
+      <li><a href="presentes-e-arranjos.html">Presentes e Arranjos</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-title">Butique</div>
+    <ul class="footer-links">
+      <li><a href="index.html#about">A Nossa História</a></li>
+      <li><a href="index.html#experience">Serviços</a></li>
+      <li><a href="index.html">Blog de Cuidados de Plantas</a></li>
+      <li><a href="index.html#contact">Contacto</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-title">Contacto</div>
+    <ul class="footer-links">
+      <li><a href="#">+351 000 000 000</a></li>
+      <li><a href="#">WhatsApp</a></li>
+      <li><a href="#">hello@gardenia.pt</a></li>
+      <li><a href="#">Encontre-nos</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span class="footer-copy">© 2025 Gardénia. Todos os direitos reservados.</span>
+  <div class="footer-divider"></div>
+  <span class="footer-copy">Butique de Plantas de Luxo</span>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+</script>
+</body>
+</html>

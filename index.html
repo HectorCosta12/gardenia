@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gardénia — Butique de Plantas de Luxo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --forest: #0F2A1D;
+    --forest-mid: #1a3d2b;
+    --forest-light: #2a5240;
+    --ivory: #F7F5F0;
+    --ivory-dark: #EDE9E1;
+    --gold: #C8A96A;
+    --gold-light: #D9BF8A;
+    --brown: #6B4F3A;
+    --text-dark: #1C1C1A;
+    --text-mid: #4A4A42;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--ivory);
+    color: var(--text-dark);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 60px;
+    transition: background 0.4s, padding 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(15,42,29,0.97);
+    padding: 18px 60px;
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--ivory);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(247,245,240,0.75);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--gold);
+    border: none;
+    padding: 12px 28px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    background: var(--forest);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(42,82,64,0.6) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(107,79,58,0.2) 0%, transparent 60%),
+      linear-gradient(160deg, #0F2A1D 0%, #162E1F 40%, #0a1f15 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 60px 100px;
+    max-width: 700px;
+    animation: fadeUp 1.2s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 7vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--ivory);
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(247,245,240,0.65);
+    line-height: 1.7;
+    margin-bottom: 48px;
+    max-width: 440px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--gold);
+    border: none;
+    padding: 16px 40px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    background: transparent;
+    border: 1px solid rgba(247,245,240,0.35);
+    padding: 16px 40px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.3s, color 0.3s, transform 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-plant {
+    position: absolute; right: 5%; bottom: 0;
+    width: clamp(280px, 38vw, 540px);
+    opacity: 0.16;
+    animation: floatPlant 9s ease-in-out infinite;
+  }
+  .hero-scroll {
+    position: absolute; bottom: 40px; right: 60px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: rgba(247,245,240,0.4);
+  }
+  .hero-scroll-line {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, rgba(200,169,106,0.6), transparent);
+    animation: scrollLine 2.2s ease-in-out infinite;
+  }
+
+  /* ── TRUST ── */
+  .trust {
+    background: var(--ivory-dark);
+    padding: 80px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .trust-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--forest);
+    text-align: center;
+    margin-bottom: 60px;
+    white-space: normal;
+  }
+  .trust-card {
+    background: var(--ivory);
+    padding: 36px;
+    border-left: 2px solid var(--gold);
+  }
+  .trust-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 14px; letter-spacing: 3px; }
+  .trust-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--text-mid);
+    margin-bottom: 20px;
+  }
+  .trust-author {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── TRUST CAROUSEL ── */
+  .trust-carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .trust-carousel {
+    position: relative;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .trust-slide {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+    background: var(--ivory);
+    padding: 36px;
+    border-left: 2px solid var(--gold);
+  }
+  .trust-slide.active {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative;
+    z-index: 10;
+  }
+  .trust-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .trust-dots button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(200,169,106,0.3);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .trust-dots button.active {
+    background: var(--gold);
+    transform: scale(1.2);
+  }
+  .trust-dots button:hover {
+    background: var(--gold);
+  }
+
+  @media (max-width: 900px) {
+    .trust-carousel-container {
+      padding: 0 24px;
+    }
+    .trust-carousel {
+      height: 320px;
+    }
+    .trust-slide {
+      padding: 28px;
+    }
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+  }
+  .about-visual {
+    background: var(--forest);
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 500px;
+  }
+  .about-monogram {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22rem;
+    font-weight: 300;
+    color: rgba(200,169,106,0.07);
+    line-height: 1;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+    letter-spacing: -0.05em;
+  }
+  .about-content {
+    background: var(--ivory);
+    padding: 100px 80px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block;
+    width: 30px; height: 1px; background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--forest);
+    margin-bottom: 28px;
+  }
+  .section-title em { font-style: italic; }
+  .section-body {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--text-mid);
+    margin-bottom: 20px;
+  }
+
+  /* ── COLLECTIONS ── */
+  .collections {
+    background: var(--forest);
+    padding: 100px 60px;
+  }
+  .collections-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 60px;
+  }
+  .collections-header .section-title { color: var(--ivory); margin-bottom: 0; }
+  .view-all {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,169,106,0.4);
+    padding-bottom: 4px;
+    transition: border-color 0.3s;
+    align-self: flex-end;
+  }
+  .view-all:hover { border-color: var(--gold); }
+  .collections-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 260px 260px;
+    gap: 3px;
+  }
+  .col-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .col-card:first-child { grid-row: 1 / 3; }
+  .col-bg {
+    position: absolute; inset: 0;
+    transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  }
+  .col-card:hover .col-bg { transform: scale(1.06); }
+  .bg-1 { background: radial-gradient(ellipse at 60% 40%, #2a5240, #0a1f15); }
+  .bg-2 { background: radial-gradient(ellipse at 60% 40%, #2a4020, #0f1f08); }
+  .bg-3 { background: radial-gradient(ellipse at 60% 40%, #3d2a1a, #1a0f05); }
+  .bg-4 { background: radial-gradient(ellipse at 60% 40%, #1a2a3d, #070f1a); }
+  .col-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%);
+  }
+  .col-plant-icon {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    font-size: 5rem;
+    opacity: 0.2;
+    filter: saturate(0) brightness(2);
+    transition: opacity 0.5s;
+    pointer-events: none;
+  }
+  .col-card:first-child .col-plant-icon { font-size: 9rem; opacity: 0.18; }
+  .col-card:hover .col-plant-icon { opacity: 0.32; }
+  .col-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 28px 32px;
+  }
+  .col-tag {
+    font-size: 0.66rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .col-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.2;
+    font-size: 1.4rem;
+  }
+  .col-card:first-child .col-name { font-size: 2.1rem; }
+
+  /* ── EXPERIENCE ── */
+  .experience {
+    background: var(--ivory);
+    padding: 100px 60px;
+  }
+  .experience-inner { max-width: 1100px; margin: 0 auto; }
+  .experience-header { text-align: center; margin-bottom: 70px; }
+  .experience-header .section-eyebrow { justify-content: center; }
+  .experience-header .section-eyebrow::before { display: none; }
+  .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+  .exp-item {
+    padding: 48px 36px;
+    background: var(--ivory-dark);
+    border-top: 2px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .exp-item:hover { border-color: var(--gold); background: #fff; }
+  .exp-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.35;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .exp-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--forest);
+    margin-bottom: 12px;
+  }
+  .exp-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--forest);
+    padding: 120px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: 'G';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42vw; font-weight: 300;
+    color: rgba(200,169,106,0.04);
+    line-height: 1;
+    pointer-events: none; user-select: none;
+  }
+  .cta-section .section-eyebrow { justify-content: center; color: var(--gold); position: relative; }
+  .cta-section .section-eyebrow::before { display: none; }
+  .cta-section .section-title { color: var(--ivory); position: relative; text-align: center; max-width: 600px; margin: 0 auto 24px; }
+  .cta-section .section-body { color: rgba(247,245,240,0.58); position: relative; max-width: 420px; margin: 0 auto 48px; text-align: center; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+
+  /* ── INFO SECTION ── */
+  .info-section {
+    background: var(--ivory);
+    padding: 100px 60px;
+  }
+  .info-inner { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+  }
+  .info-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+  .info-header .section-eyebrow { justify-content: center; }
+  .info-header .section-eyebrow::before { display: none; }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .info-block {
+    background: var(--ivory-dark);
+    padding: 48px;
+    border-left: 2px solid var(--gold);
+  }
+  .info-block-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--forest);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .info-block-content {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+  .schedule-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .schedule-day {
+    font-weight: 500;
+    color: var(--forest);
+  }
+  .schedule-time {
+    color: var(--text-mid);
+  }
+  .info-social {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--forest);
+    color: var(--gold);
+    text-decoration: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .social-link:hover {
+    background: var(--gold);
+    color: var(--forest);
+    transform: translateY(-3px);
+  }
+  .info-highlight {
+    background: rgba(200,169,106,0.08);
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 20px;
+    border-left: 3px solid var(--gold);
+  }
+  .info-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #06100a;
+    padding: 70px 60px 50px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 60px;
+  }
+  .footer-brand .nav-logo { font-size: 2rem; }
+  .footer-tagline {
+    font-size: 0.85rem;
+    color: rgba(247,245,240,0.35);
+    line-height: 1.75;
+    margin-top: 18px;
+    font-weight: 300;
+  }
+  .footer-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+  .footer-links a {
+    font-size: 0.88rem;
+    color: rgba(247,245,240,0.45);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-bottom {
+    background: #06100a;
+    padding: 20px 60px;
+    border-top: 1px solid rgba(200,169,106,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 0.72rem; color: rgba(247,245,240,0.22); letter-spacing: 0.1em; }
+  .footer-divider { width: 50px; height: 1px; background: rgba(200,169,106,0.3); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes floatPlant {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50%       { transform: translateY(-18px) rotate(1deg); }
+  }
+  @keyframes scrollLine {
+    0%,100% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+    50%      { opacity: 0.4; transform: scaleY(0.4); transform-origin: bottom; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.12s; }
+  .reveal-delay-2 { transition-delay: 0.24s; }
+  .reveal-delay-3 { transition-delay: 0.36s; }
+  .reveal-delay-4 { transition-delay: 0.48s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 22px 24px; }
+    nav.scrolled { padding: 14px 24px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 24px 80px; }
+    .hero-scroll { display: none; }
+    .trust { padding: 60px 24px; }
+    .trust-label { text-align: center; font-size: 1.5rem; margin-bottom: 50px; }
+    .trust-carousel { height: 380px; }
+    .trust-slide { padding: 24px; }
+    .about { grid-template-columns: 1fr; }
+    .about-visual { min-height: 260px; }
+    .about-content { padding: 60px 24px; }
+    .collections { padding: 80px 24px; }
+    .collections-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .col-card { min-height: 240px; }
+    .col-card:first-child { grid-row: auto; min-height: 340px; }
+    .experience { padding: 80px 24px; }
+    .experience-grid { grid-template-columns: 1fr 1fr; }
+    .exp-item { min-height: 280px; display: flex; flex-direction: column; justify-content: space-between; }
+    .cta-section { padding: 80px 24px; }
+    .info-section { padding: 80px 24px; }
+    .info-grid { grid-template-columns: 1fr; gap: 40px; }
+    .info-block { padding: 36px; }
+    footer { grid-template-columns: 1fr 1fr; padding: 60px 24px 40px; gap: 40px; }
+    .footer-bottom { padding: 18px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Gard<span>é</span>nia</a>
+  <ul class="nav-links">
+    <li><a href="#collections">Colecções</a></li>
+    <li><a href="#about">A Nossa História</a></li>
+    <li><a href="#experience">Serviços</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <svg class="hero-plant" viewBox="0 0 380 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M190 680 C190 680 190 380 190 270" stroke="#C8A96A" stroke-width="2" stroke-linecap="round"/>
+    <path d="M190 480 C190 480 105 400 45 358 C25 346 14 318 36 307 C58 296 80 318 104 342 C138 378 165 428 190 480Z" fill="#2a5240"/>
+    <path d="M190 440 C190 440 275 362 335 320 C355 308 366 280 344 269 C322 258 300 280 276 304 C242 340 215 390 190 440Z" fill="#1a3d2b"/>
+    <path d="M190 360 C190 360 88 288 26 226 C2 200 8 162 36 168 C64 174 82 208 108 240 C148 282 170 320 190 360Z" fill="#2a5240"/>
+    <path d="M190 320 C190 320 292 250 354 188 C378 162 372 124 344 130 C316 136 298 170 272 202 C232 244 210 282 190 320Z" fill="#1a3d2b"/>
+    <circle cx="190" cy="270" r="10" fill="#C8A96A" opacity="0.4"/>
+    <path d="M190 250 C190 250 68 168 14 58 C-8 12 36 -22 74 12 C112 46 152 158 190 250Z" fill="#2a5240" opacity="0.75"/>
+    <path d="M190 232 C190 232 312 152 366 42 C388 -4 344 -38 306 -4 C268 30 228 142 190 232Z" fill="#1a3d2b" opacity="0.75"/>
+    <path d="M190 250 L14 58" stroke="#1a3d2b" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+    <path d="M190 232 L366 42" stroke="#0d2418" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Butique de Plantas de Luxo</div>
+    <h1>Traga <em>Vida</em><br>ao Seu Espaço</h1>
+    <p class="hero-sub">Plantas premium, curadas com paixão e entregues com cuidado extraordinário.</p>
+    <div class="hero-btns">
+      <a href="#collections" class="btn-primary">Conheça os Produtos</a>
+      <a href="#contact" class="btn-ghost">Fale Conosco</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Descubra
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="trust-carousel-container">
+    <div class="trust-label reveal">Amado pelos<br>nossos clientes</div>
+    <div class="trust-carousel">
+      <div class="trust-slide active">
+        <div class="trust-stars">★ ★ ★ ★ ★</div>
+        <p class="trust-quote">"Não conheço pessoalmente o staff pois fiz encomenda por telefone e foi uma experiência muito muito boa. Extremamente simpáticos. Muito disponíveis. Atenciosos. Profissionais. E nota se que trabalham por gosto. Fiquei muito grato e satisfeito e não podia deixar de vir aqui dar uma avaliação. Recomendo imensamente e são um exemplo a seguir por outros profissionais do ramo. Obrigado"</p>
+        <div class="trust-author">— Tiago Santos</div>
+      </div>
+      <div class="trust-slide">
+        <div class="trust-stars">★ ★ ★ ★ ★</div>
+        <p class="trust-quote">"A melhor casa de plantas da baixa. Sempre muito atenciosos. Muito profissionais. Sempre com grandes novidades."</p>
+        <div class="trust-author">— Francisco Estima</div>
+      </div>
+      <div class="trust-slide">
+        <div class="trust-stars">★ ★ ★ ★ ★</div>
+        <p class="trust-quote">"Gostei bué da qualidade e são super atenciosos."</p>
+        <div class="trust-author">— Gonçalo Davim</div>
+      </div>
+      <div class="trust-slide">
+        <div class="trust-stars">★ ★ ★ ★ ★</div>
+        <p class="trust-quote">"Extremamente amáveis, atentos e profissionais. Pode-se sentir que amam verdadeiramente o que fazem."</p>
+        <div class="trust-author">— Maria S.</div>
+      </div>
+      <div class="trust-slide">
+        <div class="trust-stars">★ ★ ★ ★ ★</div>
+        <p class="trust-quote">"A melhor loja de plantas da cidade. Sempre atento e cheio de novas surpresas."</p>
+        <div class="trust-author">— Carlos M.</div>
+      </div>
+    </div>
+    <div class="trust-dots">
+      <button class="active" onclick="goToSlide(0)"></button>
+      <button onclick="goToSlide(1)"></button>
+      <button onclick="goToSlide(2)"></button>
+      <button onclick="goToSlide(3)"></button>
+      <button onclick="goToSlide(4)"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-visual">
+    <div class="about-monogram">G</div>
+    <svg width="110" height="155" viewBox="0 0 110 155" fill="none" style="position:relative;z-index:2">
+      <path d="M55 155 C55 155 55 75 55 45" stroke="#C8A96A" stroke-width="1.8" stroke-linecap="round" opacity="0.75"/>
+      <path d="M55 105 C55 105 26 80 8 60 C1 51 4 37 18 41 C32 45 44 70 55 105Z" fill="#2a5240" opacity="0.85"/>
+      <path d="M55 90 C55 90 84 67 102 47 C109 38 106 24 92 28 C78 32 66 55 55 90Z" fill="#1a3d2b" opacity="0.85"/>
+      <path d="M55 65 C55 65 22 46 4 18 C-2 7 8 -2 21 4 C34 10 46 36 55 65Z" fill="#2a5240" opacity="0.65"/>
+      <path d="M55 57 C55 57 88 40 106 12 C112 1 102 -7 89 -1 C76 5 64 31 55 57Z" fill="#1a3d2b" opacity="0.65"/>
+      <circle cx="55" cy="45" r="5" fill="#C8A96A" opacity="0.55"/>
+    </svg>
+  </div>
+
+  <div class="about-content">
+    <div class="section-eyebrow reveal">A Nossa História</div>
+    <h2 class="section-title reveal reveal-delay-1">Muito Mais Do Que<br><em>Uma Loja de Plantas</em></h2>
+    <p class="section-body reveal reveal-delay-2">Na Gardénia, cada planta conta uma história. Somos uma butique de plantas construída sobre paixão, cuidado e atenção ao detalhe. Desde a primeira conversa até à entrega final, criamos uma experiência que se sente pessoal, calorosa e refinada.</p>
+    <p class="section-body reveal reveal-delay-3">A nossa equipa não apenas vende plantas — orientamos, aconselhamos e ajudamos a criar espaços que se sentem verdadeiramente vivos.</p>
+    <a href="#contact" class="btn-primary reveal reveal-delay-4" style="display:inline-block;margin-top:16px;">Descubra A Nossa História</a>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section class="collections" id="collections">
+  <div class="collections-header">
+    <div>
+      <div class="section-eyebrow reveal" style="color:var(--gold)">A Nossa Selecção</div>
+      <h2 class="section-title reveal reveal-delay-1" style="color:var(--ivory)">Colecções em<br><em>Destaque</em></h2>
+    </div>
+    <a href="#" class="view-all reveal reveal-delay-2">Ver Tudo →</a>
+  </div>
+
+  <div class="collections-grid">
+    <a href="plantas-assinatura-interior.html" class="col-card reveal" style="text-decoration:none;color:inherit;">
+      <div class="col-bg bg-1"></div>
+      <div class="col-plant-icon">🌿</div>
+      <div class="col-overlay"></div>
+      <div class="col-content">
+        <div class="col-tag">Mais Popular</div>
+        <div class="col-name">Plantas Assinatura Interior</div>
+      </div>
+    </a>
+    <a href="pecas-de-impacto.html" class="col-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;">
+      <div class="col-bg bg-2"></div>
+      <div class="col-plant-icon">🌴</div>
+      <div class="col-overlay"></div>
+      <div class="col-content">
+        <div class="col-tag">Curado</div>
+        <div class="col-name">Peças de Impacto</div>
+      </div>
+    </a>
+    <a href="achados-raros.html" class="col-card reveal reveal-delay-2" style="text-decoration:none;color:inherit;">
+      <div class="col-bg bg-3"></div>
+      <div class="col-plant-icon">🌺</div>
+      <div class="col-overlay"></div>
+      <div class="col-content">
+        <div class="col-tag">Exclusivo</div>
+        <div class="col-name">Achados Raros</div>
+      </div>
+    </a>
+    <a href="presentes-e-arranjos.html" class="col-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;">
+      <div class="col-bg bg-4"></div>
+      <div class="col-plant-icon">🎁</div>
+      <div class="col-overlay"></div>
+      <div class="col-content">
+        <div class="col-tag">Presentes</div>
+        <div class="col-name">Presentes e Arranjos</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="experience-inner">
+    <div class="experience-header">
+      <div class="section-eyebrow reveal">Por Que Gardénia</div>
+      <h2 class="section-title reveal reveal-delay-1">Serviço Que Se Sente <em>Diferente</em></h2>
+    </div>
+    <div class="experience-grid">
+      <div class="exp-item reveal">
+        <div class="exp-num">01</div>
+        <div class="exp-title">Recomendações Personalizadas</div>
+        <p class="exp-desc">Ouvimos em primeiro lugar. Cada sugestão é adaptada ao seu espaço, à sua luz e ao seu estilo de vida.</p>
+      </div>
+      <div class="exp-item reveal reveal-delay-1">
+        <div class="exp-num">02</div>
+        <div class="exp-title">Suporte Humano Direto</div>
+        <p class="exp-desc">Acesso telefónico e WhatsApp à nossa equipa — conversas reais, orientação genuína.</p>
+      </div>
+      <div class="exp-item reveal reveal-delay-2">
+        <div class="exp-num">03</div>
+        <div class="exp-title">Encomendas Cuidadosamente Preparadas</div>
+        <p class="exp-desc">Cada planta é seleccionada e embalada com o mesmo cuidado que daríamos à nossa própria casa.</p>
+      </div>
+      <div class="exp-item reveal reveal-delay-3">
+        <div class="exp-num">04</div>
+        <div class="exp-title">Atenção a Cada Detalhe</div>
+        <p class="exp-desc">Da primeira mensagem até à entrega final, nada é negligenciado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="section-eyebrow reveal">Comece A Sua Jornada</div>
+  <h2 class="section-title reveal reveal-delay-1">Deixe-nos ajuda-lo a<br><em>transformar o seu espaço</em></h2>
+  <p class="section-body reveal reveal-delay-2">Estamos aqui quando precisa de orientação. Uma mensagem rápida, uma chamada ou uma visita — adoramos tudo.</p>
+  <div class="cta-btns reveal reveal-delay-3">
+    <a href="tel:+351234602188" class="btn-primary">Ligue para Gardénia</a>
+    <a href="https://wa.me/351234602188" class="btn-ghost">Envie-nos WhatsApp</a>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="info-section" id="info">
+  <div class="info-inner">
+    <div class="info-header">
+      <div class="section-eyebrow reveal">Visite-nos</div>
+      <h2 class="section-title reveal reveal-delay-1">Encontre-nos e<br><em>Conheça-nos</em></h2>
+    </div>
+    
+    <div class="info-grid">
+      <!-- CONTACT INFO -->
+      <div class="info-block reveal">
+        <div class="info-block-title">📍 Localização</div>
+        <div class="info-block-content">
+          <div style="margin-bottom: 20px;">
+            <p>R. José Maria Veloso 33<br>3750-156 Águeda</p>
+          </div>
+          
+          <div style="border-top: 1px solid rgba(200,169,106,0.2); padding-top: 20px; margin-top: 20px;">
+            <div class="info-label">Contacto</div>
+            <div style="margin-bottom: 12px;">
+              <a href="tel:234602188" style="color: var(--gold); text-decoration: none; font-weight: 500;">234 602 188</a>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <a href="mailto:florista.gardenia@gmail.com" style="color: var(--gold); text-decoration: none; font-weight: 500;">florista.gardenia@gmail.com</a>
+            </div>
+            <div class="info-social">
+              <a href="https://www.facebook.com/floristagardenia.agueda?mibextid=wwXIfr&rdid=fISuf09Bq1SWrsNy&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18gH7zL2K2%2F%3Fmibextid%3DwwXIfr#" target="_blank" class="social-link" title="Facebook">f</a>
+            </div>
+          </div>
+
+          <div class="info-highlight">
+            <span class="info-label">Proprietária</span>
+            <div style="font-weight: 500; color: var(--forest);">Ercilia Pires</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCHEDULE -->
+      <div class="info-block reveal reveal-delay-1">
+        <div class="info-block-title">🕐 Horário de Funcionamento</div>
+        <div class="info-block-content">
+          <div class="schedule-item">
+            <div class="schedule-day">Segunda</div>
+            <div class="schedule-time">9h–12h / 13h–19h</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-day">Terça</div>
+            <div class="schedule-time">9h–12h / 13h–19h</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-day">Quarta</div>
+            <div class="schedule-time">9h–12h / 13h–19h</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-day">Quinta</div>
+            <div class="schedule-time">9h–12h / 13h–19h</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-day">Sexta</div>
+            <div class="schedule-time">9h–12h / 13h–19h</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-day">Sábado</div>
+            <div class="schedule-time">9h–13h</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-day">Domingo</div>
+            <div class="schedule-time" style="color: var(--gold); font-weight: 500;">Fechado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="#" class="nav-logo">Gard<span style="color:var(--gold)">é</span>nia</a>
+    <p class="footer-tagline">Onde a Natureza Encontra a Elegância.<br>Uma butique de plantas de luxo enraizada na paixão, cuidado e atenção discreta aos detalhes.</p>
+  </div>
+  <div>
+    
+    <div class="footer-title">Contacto</div>
+    <ul class="footer-links">
+      <li><a href="tel:+351234602188">234 602 188</a></li>
+      <li><a href="mailto:florista.gardenia@gmail.com">florista.gardenia@gmail.com</a></li>
+      <li><a href="https://www.facebook.com/floristagardenia.agueda?mibextid=wwXIfr&rdid=fISuf09Bq1SWrsNy&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18gH7zL2K2%2F%3Fmibextid%3DwwXIfr#" target="_blank">Facebook</a></li>
+      <li><a href="https://wa.me/351234602188">WhatsApp</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span class="footer-copy">© 2026
+     Gardénia. Todos os direitos reservados.</span>
+  <div class="footer-divider"></div>
+  <span class="footer-copy">Butique de Plantas de Luxo</span>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── TRUST CAROUSEL ──
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.trust-slide');
+  const dots = document.querySelectorAll('.trust-dots button');
+  let carouselInterval;
+
+  function showSlide(n) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    slides[n].classList.add('active');
+    dots[n].classList.add('active');
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function goToSlide(n) {
+    currentSlide = n;
+    showSlide(currentSlide);
+    clearInterval(carouselInterval);
+    startCarousel();
+  }
+
+  function startCarousel() {
+    carouselInterval = setInterval(nextSlide, 5500);
+  }
+
+  if (slides.length > 0) {
+    showSlide(0);
+    startCarousel();
+  }
+</script>
+</body>
+</html>
